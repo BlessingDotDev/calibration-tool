@@ -1,7 +1,6 @@
 
 import HeroSection from "../components/section/HeroSection";
 import plotGraphImage from "../assets/project.jpg";
-import Button from "../components/ui/Button";
 
 function PlotGraph() {
   return (
@@ -10,10 +9,8 @@ function PlotGraph() {
       title="Plot Your Science"
       description="Create accurate calibration curves, analyse your data, and visualise scientific results with ease."
       backgroundImage={plotGraphImage}
+      className="min-h-[40vh] py-6"
     >
-      <Button variant="secondary">
-        Start Plotting
-      </Button>
     </HeroSection>
   );
 }
