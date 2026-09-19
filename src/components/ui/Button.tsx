@@ -1,4 +1,5 @@
 import clsx from "clsx";
+import { NavLink } from "react-router-dom";
 
 type ButtonVariant = 
 |'primary' 
@@ -34,13 +35,28 @@ const buttonStyles: Record<ButtonVariant, string> = {
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant;
+  to?: string;
 };
 
 function Button({ 
   children, 
   variant = 'primary',
-  className
+  className,
+  to,
 }: ButtonProps) {
+  if (to) {
+    return (
+      <NavLink
+        to={to}
+        className={clsx(
+          buttonStyles[variant],
+          className,
+        )}
+      >
+        {children}
+      </NavLink>
+    )
+  }
   return (
     <button className={clsx(
       buttonStyles[variant],

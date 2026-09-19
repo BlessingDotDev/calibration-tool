@@ -1,8 +1,9 @@
 import logo from '../../../assets/logo.png';
+import { NavLink } from 'react-router-dom';
 
 function HeaderLogo() {
   return (
-    <div className="flex items-center gap-2">
+    <NavLink to="/" className="flex items-center gap-2">
       <img className="h-10 w-10" src={logo} alt="Logo" />
 
       <p className="hidden md:block text-xl font-semibold tracking-wider ">
@@ -11,7 +12,7 @@ function HeaderLogo() {
           Sci
         </span>
       </p>
-    </div>
+    </NavLink>
   )
 }
 
