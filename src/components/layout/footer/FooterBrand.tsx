@@ -13,7 +13,7 @@ function FooterBrand() {
           alt="PlotSci Logo"
         />
 
-        <p className="text-xl font-semibold tracking-wider text-white">
+        <p className="text-xl font-semibold tracking-wider text-text">
           Plot
           <span className="pl-1 text-secondary">
             Sci
