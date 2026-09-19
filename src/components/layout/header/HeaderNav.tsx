@@ -5,8 +5,8 @@ function HeaderNav() {
     <nav className="flex items-center justify-between w-lg">
       <div className="flex gap-2">
         <Button to="/about" variant="navButton">About</Button>
-        <Button variant="navButton">Contact</Button>
-        <Button variant="navButton">Plot Graph</Button>
+        <Button to="/contact" variant="navButton">Contact</Button>
+        <Button to="/project" variant="navButton">Plot Graph</Button>
       </div>
 
       <div>

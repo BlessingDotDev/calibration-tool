@@ -13,7 +13,7 @@ function FooterLinks() {
 
         <div className="flex flex-col gap-3 text-sm text-text/50">
           <NavLink
-            to="/plot"
+            to="/project"
             className="transition hover:text-text"
           >
             Plot Graph

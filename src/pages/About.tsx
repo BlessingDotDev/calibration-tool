@@ -1,6 +1,6 @@
 
 import HeroSection from "../components/section/HeroSection";
-import aboutImage from "../assets/hero1.jpg";
+import aboutImage from "../assets/about.jpg";
 import Button from "../components/ui/Button";
 
 function About() {

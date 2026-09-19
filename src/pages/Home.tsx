@@ -1,5 +1,5 @@
 import HeroSection from "../components/section/HeroSection"
-import logo from "../assets/hero.jpg"
+import logo from "../assets/home.jpg"
 import Button from "../components/ui/Button"
 
 function Home() {
