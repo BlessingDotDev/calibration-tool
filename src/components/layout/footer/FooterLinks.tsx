@@ -7,28 +7,28 @@ function FooterLinks() {
 
       {/* Product */}
       <div>
-        <h3 className="mb-4 text-sm font-semibold text-white">
+        <h3 className="mb-4 text-sm font-semibold text-text">
           Product
         </h3>
 
-        <div className="flex flex-col gap-3 text-sm text-white/50">
+        <div className="flex flex-col gap-3 text-sm text-text/50">
           <NavLink
             to="/plot"
-            className="transition hover:text-white"
+            className="transition hover:text-text"
           >
             Plot Graph
           </NavLink>
 
           <NavLink
             to="/about"
-            className="transition hover:text-white"
+            className="transition hover:text-text"
           >
             About
           </NavLink>
 
           <NavLink
             to="/contact"
-            className="transition hover:text-white"
+            className="transition hover:text-text"
           >
             Contact
           </NavLink>
@@ -37,21 +37,21 @@ function FooterLinks() {
 
       {/* Account */}
       <div>
-        <h3 className="mb-4 text-sm font-semibold text-white">
+        <h3 className="mb-4 text-sm font-semibold text-text">
           Account
         </h3>
 
-        <div className="flex flex-col gap-3 text-sm text-white/50">
+        <div className="flex flex-col gap-3 text-sm text-text/50">
           <NavLink
             to="/login"
-            className="transition hover:text-white"
+            className="transition hover:text-text"
           >
             Login
           </NavLink>
 
           <NavLink
             to="/signup"
-            className="transition hover:text-white"
+            className="transition hover:text-text"
           >
             Sign Up
           </NavLink>
@@ -60,21 +60,21 @@ function FooterLinks() {
 
       {/* Legal */}
       <div>
-        <h3 className="mb-4 text-sm font-semibold text-white">
+        <h3 className="mb-4 text-sm font-semibold text-text">
           Legal
         </h3>
 
-        <div className="flex flex-col gap-3 text-sm text-white/50">
+        <div className="flex flex-col gap-3 text-sm text-text/50">
           <NavLink
             to="/privacy"
-            className="transition hover:text-white"
+            className="transition hover:text-text"
           >
             Privacy
           </NavLink>
 
           <NavLink
             to="/terms"
-            className="transition hover:text-white"
+            className="transition hover:text-text"
           >
             Terms
           </NavLink>

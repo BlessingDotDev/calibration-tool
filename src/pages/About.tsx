@@ -1,22 +1,21 @@
 
-import HeroSection from "../components/section/HeroSection"
-import logo from "../assets/hero1.jpg"
-import Button from "../components/ui/Button"
+import HeroSection from "../components/section/HeroSection";
+import aboutImage from "../assets/hero1.jpg";
+import Button from "../components/ui/Button";
 
 function About() {
   return (
-    <HeroSection 
+    <HeroSection
       headerTitle="About PlotSci"
-      title="Calibration Tool"
-      description="PlotSci is a Professional Calibration tool for assistance to 
-      professional analyst and science students"
-      backgroundImage={logo}
+      title="Science Made Simpler"
+      description="PlotSci is designed to make scientific data analysis and calibration curve plotting simple, clear, and accessible."
+      backgroundImage={aboutImage}
     >
       <Button variant="secondary">
-        Start a Project
+        Learn More
       </Button>
-    </HeroSection >
-  )
+    </HeroSection>
+  );
 }
 
 export default About;

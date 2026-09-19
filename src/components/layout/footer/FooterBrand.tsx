@@ -21,7 +21,7 @@ function FooterBrand() {
         </p>
       </NavLink>
 
-      <p className="mt-4 text-sm leading-6 text-white/50">
+      <p className="mt-4 text-sm leading-6 text-text/50">
         A simple and powerful tool for creating calibration
         curves, analysing data, and visualising scientific results.
       </p>
