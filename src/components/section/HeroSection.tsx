@@ -38,7 +38,7 @@ function HeroSection({
             <br />
           </h1>
 
-          <p className=" max-w-xl text-lg leading-relaxed  text-text/60">
+          <p className=" max-w-xl text-lg leading-relaxed  text-text">
            {description}
           </p>
 
