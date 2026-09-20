@@ -2,7 +2,7 @@ import { useState } from "react";
 import HeroSection from "../components/section/HeroSection";
 import plotGraphImage from "../assets/project.jpg";
 
-import type { CalibrationPoint } from "../types/calibration";
+import type { CalibrationPoint, UnknownSample as UnknownSampleType, } from "../types/calibration";
 import CalibrationTable from "../components/calibration/CalibrationTable";
 import { calculateRegression } from "../utils/regression";
 import RegressionResults from "../components/calibration/CalibrationResults";
@@ -37,6 +37,15 @@ function PlotGraph() {
       absorbance: 0.61,
     },
   ]);
+  const [unknownSamples, setUnknownSamples] = useState<
+    UnknownSampleType[]
+  >([
+  {
+    id: 1,
+    name: "Sample 1",
+    absorbance: 0,
+  },
+]);
 
   const regression = calculateRegression(calibrationData);
 
@@ -57,11 +66,36 @@ function PlotGraph() {
     );
   };
 
+  const handleUnknownChange = (
+  id: number,
+  field: "name" | "absorbance",
+  value: string | number,
+) => {
+  setUnknownSamples((currentSamples) =>
+    currentSamples.map((sample) =>
+      sample.id === id
+        ? {
+            ...sample,
+            [field]: value,
+          }
+        : sample,
+    ),
+  );
+};
+
   const handleRemove = (id: number) => {
     setCalibrationData((currentData) => 
       currentData.filter((point) => point.id !== id)
     )
   };
+
+  const handleRemoveUnknownSample = (id: number) => {
+  setUnknownSamples((currentSamples) =>
+    currentSamples.filter(
+      (sample) => sample.id !== id,
+    ),
+  );
+};
 
   const handleAdd = () => {
     const newPoint: CalibrationPoint = {
@@ -76,6 +110,18 @@ function PlotGraph() {
     ]);
   };
 
+  const handleAddUnknownSample = () => {
+  const newSample: UnknownSampleType = {
+    id: Date.now(),
+    name: `Sample ${unknownSamples.length + 1}`,
+    absorbance: 0,
+  };
+
+  setUnknownSamples((currentSamples) => [
+    ...currentSamples,
+    newSample,
+  ]);
+};
 
   return (
     <>
@@ -120,7 +166,11 @@ function PlotGraph() {
         <div className="mt-8">
           <UnknownSample
             data={calibrationData}
+            samples={unknownSamples}
             regression={regression}
+            onChange={handleUnknownChange}
+            onAdd={handleAddUnknownSample}
+            onRemove={handleRemoveUnknownSample}
           />
         </div>
         
