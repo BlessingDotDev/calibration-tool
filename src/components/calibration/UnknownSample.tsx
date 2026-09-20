@@ -10,7 +10,7 @@ type UnknownSampleProps = {
   regression: RegressionResult | null;
   onChange: (
     id: number,
-    field: "name" | "absorbance",
+    field: "name" | "absorbance" | "dilutionFactor",
     value: string | number,
   ) => void;
   onAdd: () => void;
@@ -118,7 +118,15 @@ function UnknownSample({
               </th>
 
               <th className="px-5 py-4 text-sm font-medium text-white/60">
-                Concentration
+                Dilution Factor
+              </th>
+
+              <th className="px-5 py-4 text-sm font-medium text-white/60">
+                Measured Concentration
+              </th>
+
+              <th className="px-5 py-4 text-sm font-medium text-white/60">
+                Final Concentration
               </th>
 
               <th className="px-5 py-4 text-sm font-medium text-white/60">
@@ -135,6 +143,11 @@ function UnknownSample({
             {samples.map((sample, index) => {
               const concentration =
                 calculateConcentration(sample.absorbance);
+
+              const finalConcentration =
+                concentration !== null
+                  ? concentration * sample.dilutionFactor
+                  : null;
 
               const withinRange =
                 isWithinRange(concentration);
@@ -181,9 +194,38 @@ function UnknownSample({
                   </td>
 
                   <td className="px-5 py-4">
+                    <input
+                      type="number"
+                      min="1"
+                      step="any"
+                      value={sample.dilutionFactor}
+                      onChange={(event) =>
+                        onChange(
+                          sample.id,
+                          "dilutionFactor",
+                          Number(event.target.value),
+                        )
+                      }
+                      className="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-white outline-none transition focus:border-secondary"
+                    />
+                  </td>
+
+                  <td className="px-5 py-4">
                     {concentration !== null ? (
                       <span className="font-medium text-secondary">
                         {concentration.toFixed(4)}
+                      </span>
+                    ) : (
+                      <span className="text-white/30">
+                        —
+                      </span>
+                    )}
+                  </td>
+
+                  <td className="px-5 py-4">
+                    {finalConcentration !== null ? (
+                      <span className="font-medium text-secondary">
+                        {finalConcentration.toFixed(4)}
                       </span>
                     ) : (
                       <span className="text-white/30">

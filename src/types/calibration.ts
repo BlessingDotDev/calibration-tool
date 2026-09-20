@@ -3,9 +3,9 @@ export type CalibrationPoint = {
   concentration: number;
   absorbance: number;
 }
-
 export type UnknownSample = {
   id: number;
   name: string;
   absorbance: number;
+  dilutionFactor: number;
 };

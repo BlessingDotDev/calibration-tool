@@ -40,11 +40,12 @@ function PlotGraph() {
   const [unknownSamples, setUnknownSamples] = useState<
     UnknownSampleType[]
   >([
-  {
-    id: 1,
-    name: "Sample 1",
-    absorbance: 0,
-  },
+    {
+      id: 1,
+      name: "Sample 1",
+      absorbance: 0,
+      dilutionFactor: 1,
+    },
 ]);
 
   const regression = calculateRegression(calibrationData);
@@ -67,21 +68,21 @@ function PlotGraph() {
   };
 
   const handleUnknownChange = (
-  id: number,
-  field: "name" | "absorbance",
-  value: string | number,
-) => {
-  setUnknownSamples((currentSamples) =>
-    currentSamples.map((sample) =>
-      sample.id === id
-        ? {
-            ...sample,
-            [field]: value,
-          }
-        : sample,
-    ),
-  );
-};
+    id: number,
+    field: "name" | "absorbance" | "dilutionFactor",
+    value: string | number,
+  ) => {
+    setUnknownSamples((currentSamples) =>
+      currentSamples.map((sample) =>
+        sample.id === id
+          ? {
+              ...sample,
+              [field]: value,
+            }
+          : sample,
+      ),
+    );
+  };
 
   const handleRemove = (id: number) => {
     setCalibrationData((currentData) => 
@@ -115,6 +116,7 @@ function PlotGraph() {
     id: Date.now(),
     name: `Sample ${unknownSamples.length + 1}`,
     absorbance: 0,
+    dilutionFactor: 1,
   };
 
   setUnknownSamples((currentSamples) => [
