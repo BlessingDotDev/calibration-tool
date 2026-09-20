@@ -22,7 +22,7 @@ function CalibrationTable({
     <div className="overflow-hidden rounded-2xl border border-white/10 bg-surface">
       {/* Table */}
       <div className="overflow-x-auto">
-        <table className="w-full min-w-[500px] text-left">
+        <table className="w-full min-w-125 text-left">
           <thead className="bg-white/5">
             <tr>
               <th className="px-5 py-4 text-sm font-medium text-white/60">
