@@ -9,6 +9,12 @@ import RegressionResults from "../components/calibration/CalibrationResults";
 import CalibrationChart from "../components/calibration/CalibrationChart";
 import UnknownSample from "../components/calibration/UnknownSample";
 
+import {
+  validateCalibrationData,
+  // validateUnknownSamples,
+} from "../utils/validation";
+import { exportCalibrationCSV } from "../utils/csv";
+
 function PlotGraph() {
   const [calibrationData, setCalibrationData] = useState<CalibrationPoint[]>([
     {
@@ -46,9 +52,9 @@ function PlotGraph() {
       absorbance: 0,
       dilutionFactor: 1,
     },
-]);
+  ]);
 
-  const regression = calculateRegression(calibrationData);
+  
 
   const handleChange = (
     id: number,
@@ -125,6 +131,14 @@ function PlotGraph() {
   ]);
 };
 
+  const regression = calculateRegression(calibrationData);
+
+  const calibrationValidation =
+  validateCalibrationData(calibrationData);
+
+  // const unknownValidation =
+  // validateUnknownSamples(unknownSamples);
+
   return (
     <>
       <HeroSection
@@ -146,6 +160,22 @@ function PlotGraph() {
           calibration curve.
         </p>
 
+        {!calibrationValidation.valid && (
+          <div className="mb-6 rounded-2xl border border-red-400/20 bg-red-400/5 p-5">
+            <h2 className="font-semibold text-red-400">
+              Calibration Data Issues
+            </h2>
+
+            <ul className="mt-3 space-y-1 text-sm text-red-300">
+              {calibrationValidation.errors.map(
+                (error, index) => (
+                  <li key={index}>• {error}</li>
+                ),
+              )}
+            </ul>
+          </div>
+        )}
+
         <div className="mt-8">
           <CalibrationTable 
             data={calibrationData}
@@ -154,6 +184,19 @@ function PlotGraph() {
             onAdd={handleAdd} 
 
           />
+        </div>
+
+        <div className="mt-4 flex justify-end">
+          <button
+            type="button"
+            onClick={() =>
+              exportCalibrationCSV(calibrationData)
+            }
+            disabled={!calibrationValidation.valid}
+            className="rounded-lg border border-white/10 px-4 py-2 text-sm font-medium text-white transition hover:bg-white/5 disabled:cursor-not-allowed disabled:opacity-40"
+          >
+            Export Calibration CSV
+          </button>
         </div>
 
         <div className="mt-8">
