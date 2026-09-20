@@ -13,7 +13,7 @@ import {
   validateCalibrationData,
   // validateUnknownSamples,
 } from "../utils/validation";
-import { exportCalibrationCSV } from "../utils/csv";
+import { exportCalibrationCSV, importCalibrationCSV } from "../utils/csv";
 
 function PlotGraph() {
   const [calibrationData, setCalibrationData] = useState<CalibrationPoint[]>([
@@ -43,9 +43,7 @@ function PlotGraph() {
       absorbance: 0.61,
     },
   ]);
-  const [unknownSamples, setUnknownSamples] = useState<
-    UnknownSampleType[]
-  >([
+  const [unknownSamples, setUnknownSamples] = useState<UnknownSampleType[]>([
     {
       id: 1,
       name: "Sample 1",
@@ -53,6 +51,7 @@ function PlotGraph() {
       dilutionFactor: 1,
     },
   ]);
+  const [csvError, setCsvError] = useState<string | null>( null,);
 
   
 
@@ -97,12 +96,12 @@ function PlotGraph() {
   };
 
   const handleRemoveUnknownSample = (id: number) => {
-  setUnknownSamples((currentSamples) =>
-    currentSamples.filter(
-      (sample) => sample.id !== id,
-    ),
-  );
-};
+    setUnknownSamples((currentSamples) =>
+      currentSamples.filter(
+        (sample) => sample.id !== id,
+      ),
+    );
+  };
 
   const handleAdd = () => {
     const newPoint: CalibrationPoint = {
@@ -118,18 +117,45 @@ function PlotGraph() {
   };
 
   const handleAddUnknownSample = () => {
-  const newSample: UnknownSampleType = {
-    id: Date.now(),
-    name: `Sample ${unknownSamples.length + 1}`,
-    absorbance: 0,
-    dilutionFactor: 1,
+    const newSample: UnknownSampleType = {
+      id: Date.now(),
+      name: `Sample ${unknownSamples.length + 1}`,
+      absorbance: 0,
+      dilutionFactor: 1,
+    };
+
+    setUnknownSamples((currentSamples) => [
+      ...currentSamples,
+      newSample,
+    ]);
   };
 
-  setUnknownSamples((currentSamples) => [
-    ...currentSamples,
-    newSample,
-  ]);
-};
+  const handleImportCSV = async (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    const file = event.target.files?.[0];
+
+    if (!file) {
+      return;
+    }
+
+    setCsvError(null);
+
+    try {
+      const importedData =
+        await importCalibrationCSV(file);
+
+      setCalibrationData(importedData);
+    } catch (error) {
+      setCsvError(
+        error instanceof Error
+          ? error.message
+          : "Failed to import CSV file.",
+      );
+    }
+
+    event.target.value = "";
+  };
 
   const regression = calculateRegression(calibrationData);
 
@@ -187,6 +213,42 @@ function PlotGraph() {
         </div>
 
         <div className="mt-4 flex justify-end">
+
+          {csvError && (
+            <div className="mb-4 rounded-xl border border-red-400/20 bg-red-400/5 p-4">
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <h3 className="font-medium text-red-400">
+                    CSV Import Failed
+                  </h3>
+
+                  <p className="mt-1 whitespace-pre-line text-sm text-red-300">
+                    {csvError}
+                  </p>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() => setCsvError(null)}
+                  className="text-sm text-white/40 transition hover:text-white"
+                >
+                  ×
+                </button>
+              </div>
+            </div>
+          )}
+
+          <label className="cursor-pointer rounded-lg border border-white/10 px-4 py-2 text-sm font-medium text-white transition hover:bg-white/5">
+            Import Calibration CSV
+
+            <input
+              type="file"
+              accept=".csv,text/csv"
+              onChange={handleImportCSV}
+              className="hidden"
+            />
+          </label>
+
           <button
             type="button"
             onClick={() =>
@@ -198,6 +260,8 @@ function PlotGraph() {
             Export Calibration CSV
           </button>
         </div>
+
+      
 
         <div className="mt-8">
           <RegressionResults result={regression} />
