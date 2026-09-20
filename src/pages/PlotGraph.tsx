@@ -6,6 +6,7 @@ import type { CalibrationPoint } from "../types/calibration";
 import CalibrationTable from "../components/calibration/CalibrationTable";
 import { calculateRegression } from "../utils/regression";
 import RegressionResults from "../components/calibration/CalibrationResults";
+import CalibrationChart from "../components/calibration/CalibrationChart";
 
 function PlotGraph() {
   const [calibrationData, setCalibrationData] = useState<CalibrationPoint[]>([
@@ -110,7 +111,10 @@ function PlotGraph() {
           <RegressionResults result={regression} />
         </div>
 
-        {/* regression results */}
+        <CalibrationChart
+          data={calibrationData}
+          regression={regression}
+        />
         
      </section>
 
