@@ -7,6 +7,7 @@ import CalibrationTable from "../components/calibration/CalibrationTable";
 import { calculateRegression } from "../utils/regression";
 import RegressionResults from "../components/calibration/CalibrationResults";
 import CalibrationChart from "../components/calibration/CalibrationChart";
+import UnknownSample from "../components/calibration/UnknownSample";
 
 function PlotGraph() {
   const [calibrationData, setCalibrationData] = useState<CalibrationPoint[]>([
@@ -115,6 +116,13 @@ function PlotGraph() {
           data={calibrationData}
           regression={regression}
         />
+
+        <div className="mt-8">
+          <UnknownSample
+            data={calibrationData}
+            regression={regression}
+          />
+        </div>
         
      </section>
 
