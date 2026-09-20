@@ -6,7 +6,7 @@ function HeaderNav() {
       <div className="flex gap-2">
         <Button to="/about" variant="navButton">About</Button>
         <Button to="/contact" variant="navButton">Contact</Button>
-        <Button to="/project" variant="navButton">Plot Graph</Button>
+        <Button to="/plot" variant="navButton">Plot Graph</Button>
       </div>
 
       <div>
