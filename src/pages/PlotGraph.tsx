@@ -5,6 +5,7 @@ import plotGraphImage from "../assets/project.jpg";
 import type { CalibrationPoint } from "../types/calibration";
 import CalibrationTable from "../components/calibration/CalibrationTable";
 import { calculateRegression } from "../utils/regression";
+import RegressionResults from "../components/calibration/CalibrationResults";
 
 function PlotGraph() {
   const [calibrationData, setCalibrationData] = useState<CalibrationPoint[]>([
@@ -105,42 +106,12 @@ function PlotGraph() {
           />
         </div>
 
-        {/* regression results */}
-        <div className="mt-8 rounded-2xl border border-white/10 bg-surface p-6">
-          <h2 className="text-lg font-semibold text-white">
-            Regression Results
-          </h2>
-
-          <div className="mt-4 space-y-2 text-white/70">
-            <p>
-              Slope:{" "}
-              <span className="text-white">
-                {regression.slope.toFixed(4)}
-              </span>
-            </p>
-
-            <p>
-              Intercept:{" "}
-              <span className="text-white">
-                {regression.intercept.toFixed(4)}
-              </span>
-            </p>
-
-            <p>
-              R²:{" "}
-              <span className="text-white">
-                {regression.rSquared.toFixed(4)}
-              </span>
-            </p>
-
-            <p>
-              Equation:{" "}
-              <span className="text-secondary">
-                {regression.equation}
-              </span>
-            </p>
-          </div>
+        <div className="mt-8">
+          <RegressionResults result={regression} />
         </div>
+
+        {/* regression results */}
+        
      </section>
 
     </>
