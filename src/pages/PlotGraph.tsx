@@ -11,9 +11,10 @@ import UnknownSample from "../components/calibration/UnknownSample";
 
 import {
   validateCalibrationData,
-  // validateUnknownSamples,
+  validateUnknownSamples,
 } from "../utils/validation";
 import { exportCalibrationCSV, importCalibrationCSV } from "../utils/csv";
+import { generatePDFReport } from "../utils/report";
 
 function PlotGraph() {
   const [calibrationData, setCalibrationData] = useState<CalibrationPoint[]>([
@@ -162,8 +163,8 @@ function PlotGraph() {
   const calibrationValidation =
   validateCalibrationData(calibrationData);
 
-  // const unknownValidation =
-  // validateUnknownSamples(unknownSamples);
+  const unknownValidation =
+  validateUnknownSamples(unknownSamples);
 
   return (
     <>
@@ -258,6 +259,25 @@ function PlotGraph() {
             className="rounded-lg border border-white/10 px-4 py-2 text-sm font-medium text-white transition hover:bg-white/5 disabled:cursor-not-allowed disabled:opacity-40"
           >
             Export Calibration CSV
+          </button>
+
+          <button
+            type="button"
+            onClick={async () =>
+              await generatePDFReport({
+                calibrationData,
+                regression,
+                unknownSamples,
+              })
+            }
+            disabled={
+              !calibrationValidation.valid ||
+              !unknownValidation.valid ||
+              !regression
+            }
+            className="rounded-lg border border-white/10 px-4 py-2 text-sm font-medium text-white transition hover:bg-white/5 disabled:cursor-not-allowed disabled:opacity-40"
+          >
+            Generate PDF Report
           </button>
         </div>
 
