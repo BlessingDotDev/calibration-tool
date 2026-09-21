@@ -17,33 +17,7 @@ import { exportCalibrationCSV, importCalibrationCSV } from "../utils/csv";
 import { generatePDFReport } from "../utils/report";
 
 function PlotGraph() {
-  const [calibrationData, setCalibrationData] = useState<CalibrationPoint[]>([
-    {
-      id: 1,
-      concentration: 0,
-      absorbance: 0.02,
-    },
-    {
-      id: 2,
-      concentration: 2,
-      absorbance: 0.15,
-    },
-    {
-      id: 3,
-      concentration: 4,
-      absorbance: 0.31,
-    },
-    {
-      id: 4,
-      concentration: 6,
-      absorbance: 0.46,
-    },
-    {
-      id: 5,
-      concentration: 8,
-      absorbance: 0.61,
-    },
-  ]);
+  const [calibrationData, setCalibrationData] = useState<CalibrationPoint[]>([]);
   const [unknownSamples, setUnknownSamples] = useState<UnknownSampleType[]>([
     {
       id: 1,

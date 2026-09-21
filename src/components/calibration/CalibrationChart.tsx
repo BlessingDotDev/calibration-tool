@@ -78,7 +78,7 @@ function CalibrationChart({
 
       <div 
         id="calibration-chart"
-        className="h-[400px] w-full">
+        className="h-100 w-full">
         <ResponsiveContainer width="100%" height="100%">
           <ScatterChart
             margin={{
