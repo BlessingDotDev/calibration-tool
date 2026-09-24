@@ -2,7 +2,7 @@ import Button from '../../ui/Button';
 
 function HeaderNav() {
   return (
-    <nav className="flex items-center justify-between w-lg">
+    <nav className="flex items-center justify-between w-lg ">
       <div className="flex gap-2">
         <Button to="/about" variant="navButton">About</Button>
         <Button to="/contact" variant="navButton">Contact</Button>
@@ -10,8 +10,14 @@ function HeaderNav() {
       </div>
 
       <div>
-        <Button variant="navLink">Login</Button>|
-        <Button variant="navLink" className="text-secondary">Sign Up</Button>
+        <Button variant="navLink" to="/login">Login</Button>|
+        <Button 
+          variant="navLink" 
+          to="/register" 
+          className="text-secondary"
+        >
+          Sign Up
+        </Button>
       </div>
     </nav>
   )

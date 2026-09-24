@@ -8,6 +8,7 @@
   --color-text: #000000;
   --color-accent: #10B981;
   --color-muted: #9CA3AF; 
+  --color-border: gray;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -19,6 +20,7 @@
     --color-text: #ffffff;
     --color-accent: #34D399;
     --color-muted: #6B7280; 
+    --color-border: rgb(141, 141, 141);
   }
 }
 
@@ -30,6 +32,7 @@
   --color-text: var(--color-text);
   --color-accent: var(--color-accent);
   --color-muted: var(--color-muted);
+  --color-border: var(--color-border);
 }
 
 body {
