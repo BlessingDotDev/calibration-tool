@@ -10,6 +10,9 @@ import PlotGraph from './pages/PlotGraph';
 import Login from './pages/Login'
 import Register from './pages/Register'
 
+import PrivacyPolicy from './pages/legal/PrivacyPolicy';
+import TermsOfService from './pages/legal/TermsOfService';
+
 import './App.css'
 
 function App() {
@@ -22,6 +25,8 @@ function App() {
             <Route path="/about" element={< About/>}/>
             <Route path="/contact" element={< Contact/>} />
             <Route path="/plot" element={< PlotGraph/>} />
+            <Route path="/privacy" element={< PrivacyPolicy/>} />
+            <Route path="/terms" element={< TermsOfService/>} />
           </Route>
 
           <Route element={<AuthLayout />}>
