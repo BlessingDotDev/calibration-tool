@@ -15,8 +15,8 @@ function LegalLayout({
   children,
 }: LegalLayoutProps) {
   return (
-    <main className="min-h-screen bg-surface">
-      <div className="mx-auto max-w-4xl px-6 py-16">
+    <main className="min-h-screen max-w-5xl mx-auto bg-surface rounded-2xl">
+      <div className="px-6 py-16">
 
         <Link
           to="/"
