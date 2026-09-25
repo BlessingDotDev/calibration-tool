@@ -6,11 +6,12 @@ function Register() {
       <div className="w-full max-w-md">
         <div className="mb-8 text-center">
           <h1 className="text-3xl font-bold">
-            Welcome to Plotsci
+             Create your account
           </h1>
 
           <p className="mt-2 text-sm opacity-70">
-            Sign up and experince the full potential of PlotSci
+            Start creating professional scientific graphs
+            with PlotSci.
           </p>
         </div>
 
