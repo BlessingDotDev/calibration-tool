@@ -1,6 +1,5 @@
 import { Outlet } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
-import Button from "../components/ui/Button";
 
 function AuthLayout() {
   return (
@@ -8,10 +7,10 @@ function AuthLayout() {
       <button 
         title="Go Back"
         className="absolute left-2 top-5"
+        onClick={() => {window.history.back()}}
       >
-        <Button  variant="navLink" to="/">
-          <ArrowLeft size={24} strokeWidth={1.5}/>
-        </Button>
+  
+        <ArrowLeft size={24} strokeWidth={1.5}/>
       </button>
 
       <Outlet />

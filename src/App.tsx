@@ -9,6 +9,7 @@ import Contact from './pages/Contact'
 import PlotGraph from './pages/PlotGraph';
 import Login from './pages/Login'
 import Register from './pages/Register'
+import NotFound from './pages/NotFound';
 
 import PrivacyPolicy from './pages/legal/PrivacyPolicy';
 import TermsOfService from './pages/legal/TermsOfService';
@@ -28,6 +29,8 @@ function App() {
             <Route path="/privacy" element={< PrivacyPolicy/>} />
             <Route path="/terms" element={< TermsOfService/>} />
           </Route>
+          
+          <Route path="*" element={<NotFound />} />
 
           <Route element={<AuthLayout />}>
             <Route path="/login" element={< Login/>} />
