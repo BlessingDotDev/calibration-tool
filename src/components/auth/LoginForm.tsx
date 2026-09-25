@@ -133,13 +133,13 @@ function LoginForm() {
         )}
       </div>
 
-      <button
+      <Button
         type="submit"
         disabled={isSubmitting}
-        className="w-full rounded-xl bg-secondary px-4 py-3 font-medium transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
+        className="w-full"
       >
         {isSubmitting ? "Signing in..." : "Sign in"}
-      </button>
+      </Button>
 
        <div className="flex justify-end">
         <button

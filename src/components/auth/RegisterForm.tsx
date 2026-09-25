@@ -1,5 +1,6 @@
 import { useState } from "react";
 import {  registerSchema, type RegisterFormData} from "../../schemas/auth.schema"
+import Button from "../ui/Button"
 
 function RegisterForm() {
   const [formData, setFormData] = useState<RegisterFormData>({
@@ -149,13 +150,13 @@ function RegisterForm() {
         )}
       </div>
 
-      <button 
+      <Button 
         type="submit"
         disabled={isSubmitting}
-        className="w-full rounded-xl bg-secondary px-4 py-3 font-medium transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
+        className="w-full"
       >
         {isSubmitting ? "Signing up.." : "Sign up"}
-      </button>
+      </Button>
     </form>
   )
 }
