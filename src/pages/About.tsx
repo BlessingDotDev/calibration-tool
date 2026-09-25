@@ -3,10 +3,11 @@ import aboutImage from "../assets/about.jpg";
 import Button from "../components/ui/Button";
 import AboutIntro from "../components/section/AboutIntro";
 import FeatureSection from "../components/section/FeatureSection";
+import PageTransition from "../components/animation/PageTransition";
 
 function About() {
   return (
-    <>
+    <PageTransition>
       <HeroSection
         headerTitle="About PlotSci"
         title="Science Made Simpler"
@@ -21,7 +22,7 @@ function About() {
       <AboutIntro />
 
       <FeatureSection />
-    </>
+    </PageTransition>
   );
 }
 

@@ -15,6 +15,8 @@ import {
 } from "../utils/validation";
 import { exportCalibrationCSV, importCalibrationCSV } from "../utils/csv";
 import { generatePDFReport } from "../utils/report";
+import PageTransition from "../components/animation/PageTransition";
+
 
 function PlotGraph() {
   const [calibrationData, setCalibrationData] = useState<CalibrationPoint[]>([]);
@@ -141,7 +143,7 @@ function PlotGraph() {
   validateUnknownSamples(unknownSamples);
 
   return (
-    <>
+    <PageTransition>
       <HeroSection
         headerTitle="PlotSci"
         title="Plot Your Science"
@@ -279,7 +281,7 @@ function PlotGraph() {
         
      </section>
 
-    </>
+    </PageTransition>
 
     
   );

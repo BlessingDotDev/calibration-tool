@@ -6,10 +6,11 @@ import HelpSection from "../components/section/HelpSection";
 import contactImage from "../assets/contact.jpg";
 
 import Button from "../components/ui/Button";
+import PageTransition from "../components/animation/PageTransition";
 
 function Contact() {
   return (
-    <>
+    <PageTransition>
       <HeroSection
         headerTitle="Get In Touch"
         title="Let's Talk Science"
@@ -24,7 +25,7 @@ function Contact() {
       <ContactSection />
 
       <HelpSection />
-    </>
+    </PageTransition>
   );
 }
 
