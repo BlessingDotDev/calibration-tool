@@ -1,64 +1,25 @@
 import { useState } from "react";
 import { Eye, EyeOff } from "lucide-react"
-import { loginSchema, type LoginFormData } from "../../schemas/auth.schema";
+
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+
 import Button from "../ui/Button"
+import { loginSchema, type LoginFormData } from "../../schemas/auth.schema";
 
 function LoginForm() {
-  const [formData, setFormData] = useState<LoginFormData>({
-    email: "",
-    password: "",
-  });
-
-  const [errors, setErrors] = useState<
-    Partial<Record<keyof LoginFormData, string>>
-  >({});
-
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<LoginFormData>({
+    resolver: zodResolver(loginSchema)
+  })
 
   const [showPassword, setShowPassword] = useState(false)
 
-  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
-    const { name, value } = e.target;
-
-    setFormData((previous) => ({
-      ...previous,
-      [name]: value,
-    }));
-
-    setErrors((previous) => ({
-      ...previous,
-      [name]: undefined,
-    }));
-  }
-
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-
-    const result = loginSchema.safeParse(formData);
-
-    if (!result.success) {
-      const fieldErrors: Partial<
-        Record<keyof LoginFormData, string>
-      > = {};
-
-      result.error.issues.forEach((issue) => {
-        const field = issue.path[0] as keyof LoginFormData;
-
-        fieldErrors[field] = issue.message;
-      });
-
-      setErrors(fieldErrors);
-      return;
-    }
-
-    setErrors({});
-    setIsSubmitting(true);
-
-    console.log("Valid login data:", result.data);
-
-    setTimeout(() => {
-      setIsSubmitting(false);
-    }, 1000);
+  function onSubmit(data: LoginFormData) {
+    console.log("Valid login data", data)
   }
 
   const handleClick = () => {
@@ -66,7 +27,7 @@ function LoginForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-5">
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
       <div>
         <label
           htmlFor="email"
@@ -76,19 +37,18 @@ function LoginForm() {
         </label>
         <input
           id="email"
-          name="email"
           type="email"
-          value={formData.email}
-          onChange={handleChange}
+          {...register("email")}
+          autoComplete="email"
           placeholder="you@example.com"
           className="outline-none w-full rounded-xl border border-border bg-surface 
           px-4 py-3  transition focus:border-secondary"
-        >
-        </input>
+        />
+        
         
         {errors.email && (
           <p className="mt-1 text-sm text-red-500">
-            {errors.email}
+            {errors.email.message}
           </p>
         )}
       </div>
@@ -104,11 +64,10 @@ function LoginForm() {
         <div className="relative">
           <input
             id="password"
-            name="password"
             type={ showPassword ? "text" : "password" }
-            value={formData.password}
-            onChange={handleChange}
+            {...register("password")}
             placeholder="Enter your password"
+            autoComplete="current-password"
             className="w-full rounded-xl border border-border bg-surface px-4 py-3 outline-none transition focus:border-secondary"
           />
 
@@ -128,15 +87,15 @@ function LoginForm() {
 
         {errors.password && (
           <p className="mt-1 text-sm text-red-500">
-            {errors.password}
+            {errors.password.message}
           </p>
         )}
-      </div>
+      </div>  
 
       <Button
         type="submit"
         disabled={isSubmitting}
-        className="w-full"
+        className="w-full cursor-pointer"
       >
         {isSubmitting ? "Signing in..." : "Sign in"}
       </Button>

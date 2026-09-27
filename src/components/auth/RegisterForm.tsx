@@ -1,68 +1,73 @@
 import { useState } from "react";
-import {  registerSchema, type RegisterFormData} from "../../schemas/auth.schema"
-import Button from "../ui/Button"
 import { Eye, EyeOff } from "lucide-react" 
 
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+import Button from "../ui/Button"
+import {  registerSchema, type RegisterFormData} from "../../schemas/auth.schema"
+
 function RegisterForm() {
-  const [formData, setFormData] = useState<RegisterFormData>({
-    name: "",
-    email: "",
-    password:"",
-    confirmPassword: "",
-  });
-
-  const [errors, setErrors] = useState<Partial<Record<keyof RegisterFormData, string>>>({})
-
-  const [isSubmitting, setIsSubmitting] = useState(false)
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting},
+  } = useForm<RegisterFormData>({
+    resolver: zodResolver(registerSchema)
+  })
 
   const [showPassword, setShowPassword] = useState(false)
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const {name, value} =  e.target;
+  // const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   const {name, value} =  e.target;
 
-    setFormData((previousData) => ({
-      ...previousData,
-      [name]: value
-    }))
-  }
+  //   setFormData((previousData) => ({
+  //     ...previousData,
+  //     [name]: value
+  //   }))
+  // }
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  // const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  //   e.preventDefault();
 
-    const result = registerSchema.safeParse(formData)
+  //   const result = registerSchema.safeParse(formData)
 
-    if (!result.success) {
-          const fieldErrors: Partial<
-            Record<keyof RegisterFormData, string>
-          > = {};
+  //   if (!result.success) {
+  //         const fieldErrors: Partial<
+  //           Record<keyof RegisterFormData, string>
+  //         > = {};
     
-          result.error.issues.forEach((issue) => {
-            const field = issue.path[0] as keyof RegisterFormData;
+  //         result.error.issues.forEach((issue) => {
+  //           const field = issue.path[0] as keyof RegisterFormData;
     
-            fieldErrors[field] = issue.message;
-          });
+  //           fieldErrors[field] = issue.message;
+  //         });
     
-          setErrors(fieldErrors);
-          return;
-        }
+  //         setErrors(fieldErrors);
+  //         return;
+  //       }
     
-        setErrors({});
-        setIsSubmitting(true);
+  //       setErrors({});
+  //       setIsSubmitting(true);
     
-        console.log("Valid login data:", result.data);
+  //       console.log("Valid login data:", result.data);
     
-        setTimeout(() => {
-          setIsSubmitting(false);
-        }, 1000);
-  }
+  //       setTimeout(() => {
+  //         setIsSubmitting(false);
+  //       }, 1000);
+  // }
 
   const handleClick = () => {
     setShowPassword((prev) => !prev)
   }
+
+  function onSubmit (data: RegisterFormData) {
+    console.log("your log in data", data)
+  }
   
   return (
     <form 
-      onSubmit={handleSubmit}
+      onSubmit={handleSubmit(onSubmit)}
       className="space-y-5"
     >
       <div>
@@ -74,16 +79,15 @@ function RegisterForm() {
         </label>
         <input 
           id="name"
-          name="name"
           type="text"
-          value={formData.name}
-          onChange={handleChange}
+          {...register("name")}
           placeholder="John doe"
+          autoComplete="name"
           className="w-full rounded-xl border border-border bg-surface px-4 py-3 pr-12 outline-none transition focus:border-secondary"
         />
             {errors.name && (
           <p className="mt-1 text-sm text-red-500">
-            {errors.name}
+            {errors.name.message}
           </p>
         )}
       </div>
@@ -97,16 +101,15 @@ function RegisterForm() {
         </label>
         <input 
           id="email"
-          name="email"
           type="email"
-          value={formData.email}
-          onChange={handleChange}
+          {...register("email")}
+          autoComplete="email"
           placeholder="johndoe@gmail.com"
           className="w-full rounded-xl border border-border bg-surface px-4 py-3 pr-12 outline-none transition focus:border-secondary"
         />
             {errors.email && (
           <p className="mt-1 text-sm text-red-500">
-            {errors.email}
+            {errors.email.message}
           </p>
         )}
       </div>
@@ -122,10 +125,8 @@ function RegisterForm() {
         <div className="relative">
           <input 
             id="password"
-            name="password"
             type={showPassword ? "text": "password"}
-            value={formData.password}
-            onChange={handleChange}
+            {...register("password")}
             placeholder="Enter password"
             className="w-full rounded-xl border border-border bg-surface px-4 py-3 pr-12 outline-none transition focus:border-secondary"
           />
@@ -146,7 +147,7 @@ function RegisterForm() {
 
             {errors.password && (
           <p className="mt-1 text-sm text-red-500">
-            {errors.password}
+            {errors.password.message}
           </p>
         )}
       </div>
@@ -162,10 +163,9 @@ function RegisterForm() {
         <div className="relative">
           <input 
             id="confirmPassword"
-            name="confirmPassword"
             type={showPassword ? "text" : "password"}
-            value={formData.confirmPassword}
-            onChange={handleChange}
+            {...register("confirmPassword")}
+            autoComplete="password"
             placeholder="Confirm password"
             className="w-full rounded-xl border border-border bg-surface px-4 py-3 pr-12 outline-none transition focus:border-secondary"
           />
@@ -186,7 +186,7 @@ function RegisterForm() {
 
             {errors.confirmPassword && (
           <p className="mt-1 text-sm text-red-500">
-            {errors.confirmPassword}
+            {errors.confirmPassword.message}
           </p>
         )}
       </div>

@@ -3,7 +3,7 @@ import { ArrowLeft } from "lucide-react";
 
 function AuthLayout() {
   return (
-    <main className=" relative min-h-screen flex items-center justify-center px-4 mt-10 ">
+    <main className=" relative min-h-screen flex items-center justify-center px-2 md:px-4 mt-10 ">
       <button 
         title="Go Back"
         className="absolute left-2 -top-5"
