@@ -13,7 +13,7 @@ function Home() {
           professionals, and growing brands."
         backgroundImage={logo}
       >
-        <Button variant="secondary" to="/plot`">
+        <Button variant="secondary" to="/plot">
           Start a Project
         </Button>
       </HeroSection >
