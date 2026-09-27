@@ -17,9 +17,12 @@ function Contact() {
         description="Have a question, suggestion, or need help with PlotSci? We'd love to hear from you."
         backgroundImage={contactImage}
       >
-        <Button variant="secondary">
-          Contact Us
-        </Button>
+        <a href="#contact">
+          <Button variant="secondary">
+            Contact Us
+          </Button>
+        </a>
+        
       </HeroSection>
 
       <ContactSection />

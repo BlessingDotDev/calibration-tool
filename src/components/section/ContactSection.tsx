@@ -2,7 +2,7 @@ import { Mail, MessageSquare } from "lucide-react";
 
 function ContactSection() {
   return (
-    <section className="max-w-5xl mx-auto px-6 py-24 sm:px-10 lg:px-20">
+    <section id="contact" className="max-w-5xl mx-auto px-6 py-24 sm:px-10 lg:px-20">
       <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr]">
 
         {/* Contact information */}

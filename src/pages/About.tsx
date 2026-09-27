@@ -14,12 +14,15 @@ function About() {
         description="PlotSci is designed to make scientific data analysis and calibration curve plotting simple, clear, and accessible."
         backgroundImage={aboutImage}
       >
+      <a  href="#about" >
         <Button variant="secondary">
           Learn More
         </Button>
+      </a>
+
       </HeroSection>
 
-      <AboutIntro />
+      <AboutIntro/>
 
       <FeatureSection />
     </PageTransition>
