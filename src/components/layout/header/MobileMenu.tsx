@@ -1,5 +1,18 @@
 import { useEffect, useState } from "react";
-import { Menu, X } from "lucide-react";
+import {
+  Menu,
+  X,
+  Home,
+  Info,
+  Mail,
+  LogIn,
+  UserPlus,
+  ShieldCheck,
+  FileText,
+  ChevronRight,
+  ChartNoAxesCombined,
+} from "lucide-react";
+
 import { NavLink } from "react-router-dom";
 
 function MobileMenu() {
@@ -9,7 +22,7 @@ function MobileMenu() {
     setIsOpen(false);
   };
 
-  // Prevent scrolling while the menu is open
+  // Prevent background scrolling when menu is open
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
@@ -23,10 +36,39 @@ function MobileMenu() {
   }, [isOpen]);
 
   const navItems = [
-    { name: "Home", path: "/" },
-    { name: "About", path: "/about" },
-    { name: "Plot Graph", path: "/plot" },
-    { name: "Contact", path: "/contact" },
+    {
+      name: "Home",
+      path: "/",
+      icon: Home,
+    },
+    {
+      name: "About",
+      path: "/about",
+      icon: Info,
+    },
+    {
+      name: "Plot Graph",
+      path: "/plot",
+      icon: ChartNoAxesCombined,
+    },
+    {
+      name: "Contact",
+      path: "/contact",
+      icon: Mail,
+    },
+  ];
+
+  const authItems = [
+    {
+      name: "Sign In",
+      path: "/login",
+      icon: LogIn,
+    },
+    {
+      name: "Create Account",
+      path: "/register",
+      icon: UserPlus,
+    },
   ];
 
   return (
@@ -58,7 +100,7 @@ function MobileMenu() {
         aria-hidden="true"
       />
 
-      {/* Mobile Navigation */}
+      {/* Mobile Menu */}
       <aside
         id="mobile-navigation"
         className={`fixed right-4 top-20 z-50 w-[calc(100%-2rem)] max-w-sm overflow-hidden rounded-2xl border border-border bg-surface shadow-2xl transition-all duration-300 ease-out ${
@@ -69,37 +111,116 @@ function MobileMenu() {
         aria-hidden={!isOpen}
       >
         <div className="p-4">
-          {/* Navigation */}
+
+          {/* Navigation Label */}
+          <div className="mb-3 px-3">
+            <p className="text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
+              Navigation
+            </p>
+          </div>
+
+          {/* Main Navigation */}
           <nav className="space-y-1">
-            {navItems.map((item) => (
-              <NavLink
-                key={item.path}
-                to={item.path}
-                onClick={closeMenu}
-                className={({ isActive }) =>
-                  `flex items-center rounded-xl px-4 py-3 text-sm font-medium transition-all duration-200 ${
-                    isActive
-                      ? "bg-secondary/10 text-secondary"
-                      : "text-foreground hover:bg-background hover:text-secondary"
-                  }`
-                }
-              >
-                {item.name}
-              </NavLink>
-            ))}
+            {navItems.map((item) => {
+              const Icon = item.icon;
+
+              return (
+                <NavLink
+                  key={item.path}
+                  to={item.path}
+                  onClick={closeMenu}
+                  className={({ isActive }) =>
+                    `group flex items-center justify-between rounded-xl px-3 py-3 transition-all duration-200 ${
+                      isActive
+                        ? "bg-secondary/10 text-secondary"
+                        : "text-foreground hover:bg-background hover:text-secondary"
+                    }`
+                  }
+                >
+                  <div className="flex items-center gap-3">
+                    <Icon
+                      size={18}
+                      strokeWidth={1.8}
+                      className="transition-transform duration-200 group-hover:scale-110"
+                    />
+
+                    <span className="text-sm font-medium">
+                      {item.name}
+                    </span>
+                  </div>
+
+                  <ChevronRight
+                    size={16}
+                    strokeWidth={1.8}
+                    className="opacity-0 transition-all duration-200 group-hover:translate-x-1 group-hover:opacity-100"
+                  />
+                </NavLink>
+              );
+            })}
           </nav>
 
           {/* Divider */}
           <div className="my-4 h-px bg-border" />
 
-          {/* Legal Links */}
-          <div className="flex items-center justify-between px-4 pb-1 text-xs">
+          {/* Authentication */}
+          <div className="mb-3 px-3">
+            <p className="text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
+              Account
+            </p>
+          </div>
+
+          <div className="space-y-2">
+            {authItems.map((item) => {
+              const Icon = item.icon;
+
+              return (
+                <NavLink
+                  key={item.path}
+                  to={item.path}
+                  onClick={closeMenu}
+                  className={({ isActive }) =>
+                    `group flex items-center justify-between rounded-xl px-3 py-3 transition-all duration-200 ${
+                      isActive
+                        ? "bg-secondary text-white"
+                        : "bg-background text-foreground hover:bg-secondary/10 hover:text-secondary"
+                    }`
+                  }
+                >
+                  <div className="flex items-center gap-3">
+                    <Icon
+                      size={18}
+                      strokeWidth={1.8}
+                      className="transition-transform duration-200 group-hover:scale-110"
+                    />
+
+                    <span className="text-sm font-medium">
+                      {item.name}
+                    </span>
+                  </div>
+
+                  <ChevronRight
+                    size={16}
+                    strokeWidth={1.8}
+                    className="opacity-0 transition-all duration-200 group-hover:translate-x-1 group-hover:opacity-100"
+                  />
+                </NavLink>
+              );
+            })}
+          </div>
+
+          {/* Divider */}
+          <div className="my-4 h-px bg-border" />
+
+          {/* Legal */}
+          <div className="flex items-center gap-4 px-3 pb-1">
             <NavLink
               to="/privacy"
               onClick={closeMenu}
-              className="text-muted-foreground transition-colors hover:text-secondary"
+              className="group flex items-center gap-2 text-xs text-muted-foreground transition-colors hover:text-secondary"
             >
-              Privacy Policy
+              <ShieldCheck size={14} strokeWidth={1.8} />
+
+              <span>Privacy Policy</span>
             </NavLink>
 
             <span className="text-border">•</span>
@@ -107,9 +228,11 @@ function MobileMenu() {
             <NavLink
               to="/terms"
               onClick={closeMenu}
-              className="text-muted-foreground transition-colors hover:text-secondary"
+              className="group flex items-center gap-2 text-xs text-muted-foreground transition-colors hover:text-secondary"
             >
-              Terms
+              <FileText size={14} strokeWidth={1.8} />
+
+              <span>Terms</span>
             </NavLink>
           </div>
         </div>

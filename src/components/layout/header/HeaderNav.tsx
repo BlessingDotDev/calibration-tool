@@ -11,11 +11,7 @@ function HeaderNav() {
 
       <div>
         <Button variant="navLink" to="/login">Login</Button>|
-        <Button 
-          variant="navLink" 
-          to="/register" 
-          className="text-secondary"
-        >
+        <Button variant="navLink" to="/register" className="text-secondary">
           Sign Up
         </Button>
       </div>
