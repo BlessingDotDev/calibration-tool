@@ -1,13 +1,21 @@
-import HeaderLogo from './HeaderLogo';
-import HeaderNav from './HeaderNav';
+import HeaderLogo from "./HeaderLogo";
+import HeaderNav from "./HeaderNav";
+import MobileMenu from "./MobileMenu";
 
 function Header() {
   return (
-    <header className="flex justify-between items-center p-4 rounded-2xl bg-surface max-w-5xl mx-auto mt-4 mb-4">
+    <header className="mx-auto mt-4 mb-4 flex max-w-5xl items-center justify-between rounded-2xl bg-surface p-4">
       <HeaderLogo />
-      <HeaderNav />
+
+      <div className="hidden md:block">
+        <HeaderNav />
+      </div>
+
+      <div className="block md:hidden">
+        <MobileMenu />
+      </div>
     </header>
-  )
+  );
 }
 
 export default Header;
