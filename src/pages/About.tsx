@@ -7,25 +7,29 @@ import PageTransition from "../components/animation/PageTransition";
 
 function About() {
   return (
-    <PageTransition>
-      <HeroSection
-        headerTitle="About PlotSci"
-        title="Science Made Simpler"
-        description="PlotSci is designed to make scientific data analysis and calibration curve plotting simple, clear, and accessible."
-        backgroundImage={aboutImage}
-      >
-      <a  href="#about" >
-        <Button variant="secondary">
-          Learn More
-        </Button>
-      </a>
+    <>
+      <title>About Us</title>
 
-      </HeroSection>
+      <PageTransition>
+        <HeroSection
+          headerTitle="About PlotSci"
+          title="Science Made Simpler"
+          description="PlotSci is designed to make scientific data analysis and calibration curve plotting simple, clear, and accessible."
+          backgroundImage={aboutImage}
+        >
+        <a  href="#about" >
+          <Button variant="secondary">
+            Learn More
+          </Button>
+        </a>
 
-      <AboutIntro/>
+        </HeroSection>
 
-      <FeatureSection />
-    </PageTransition>
+        <AboutIntro/>
+
+        <FeatureSection />
+      </PageTransition>
+    </>
   );
 }
 

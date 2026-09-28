@@ -5,19 +5,23 @@ import PageTransition from "../components/animation/PageTransition"
 
 function Home() {
   return (
-    <PageTransition>
-      <HeroSection 
-        headerTitle="Plot Science"
-        title="Graphing The Sceince"
-        description="We create modern digital experiences for businesses,
-          professionals, and growing brands."
-        backgroundImage={logo}
-      >
-        <Button variant="secondary" to="/plot">
-          Start a Project
-        </Button>
-      </HeroSection >
-    </PageTransition>
+    <>
+      <title>Plot Sci | Professional Calibration Tool</title>
+
+      <PageTransition>
+        <HeroSection 
+          headerTitle="Plot Science"
+          title="Graphing The Sceince"
+          description="We create modern digital experiences for businesses,
+            professionals, and growing brands."
+          backgroundImage={logo}
+        >
+          <Button variant="secondary" to="/plot">
+            Start a Project
+          </Button>
+        </HeroSection >
+      </PageTransition>
+    </>
   )
 }
 

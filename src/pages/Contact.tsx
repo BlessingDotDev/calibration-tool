@@ -10,25 +10,29 @@ import PageTransition from "../components/animation/PageTransition";
 
 function Contact() {
   return (
-    <PageTransition>
-      <HeroSection
-        headerTitle="Get In Touch"
-        title="Let's Talk Science"
-        description="Have a question, suggestion, or need help with PlotSci? We'd love to hear from you."
-        backgroundImage={contactImage}
-      >
-        <a href="#contact">
-          <Button variant="secondary">
-            Contact Us
-          </Button>
-        </a>
-        
-      </HeroSection>
+    <>
+      <title>Contact Us</title>
 
-      <ContactSection />
+      <PageTransition>
+        <HeroSection
+          headerTitle="Get In Touch"
+          title="Let's Talk Science"
+          description="Have a question, suggestion, or need help with PlotSci? We'd love to hear from you."
+          backgroundImage={contactImage}
+        >
+          <a href="#contact">
+            <Button variant="secondary">
+              Contact Us
+            </Button>
+          </a>
+          
+        </HeroSection>
 
-      <HelpSection />
-    </PageTransition>
+        <ContactSection />
+
+        <HelpSection />
+      </PageTransition>
+    </>
   );
 }
 
