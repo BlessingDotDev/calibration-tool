@@ -239,28 +239,7 @@ function PlotGraph() {
             >
               Export Calibration CSV
             </button>
-
-            <button
-              type="button"
-              onClick={async () =>
-                await generatePDFReport({
-                  calibrationData,
-                  regression,
-                  unknownSamples,
-                })
-              }
-              disabled={
-                !calibrationValidation.valid ||
-                !unknownValidation.valid ||
-                !regression
-              }
-              className="rounded-lg border border-white/10 px-4 py-2 text-sm font-medium text-white transition hover:bg-white/5 disabled:cursor-not-allowed disabled:opacity-40"
-            >
-              Generate PDF Report
-            </button>
           </div>
-
-        
 
           <div className="mt-8">
             <RegressionResults result={regression} />
@@ -280,6 +259,29 @@ function PlotGraph() {
               onAdd={handleAddUnknownSample}
               onRemove={handleRemoveUnknownSample}
             />
+          </div>
+
+          <div className="text-end mt-8">
+            <button
+              type="button"
+              onClick={async () =>
+                await generatePDFReport({
+                  calibrationData,
+                  regression,
+                  unknownSamples,
+                })
+              }
+              disabled={
+                !calibrationValidation.valid ||
+                !unknownValidation.valid ||
+                !regression
+              }
+              className="rounded-lg border border-white/10 px-4 py-2 text-sm
+                font-medium text-white transition hover:bg-white/5 
+                disabled:cursor-not-allowed disabled:opacity-40"
+            >
+              Generate PDF Report
+            </button>
           </div>
           
       </section>
