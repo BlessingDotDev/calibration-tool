@@ -71,7 +71,7 @@ async function captureCalibrationChart(): Promise<
       width,
       height,
       pixelRatio: 2,
-      backgroundColor: "#111111",
+      backgroundColor: "#ffffff",
       cacheBust: true,
     });
 

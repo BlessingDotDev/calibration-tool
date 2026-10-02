@@ -241,7 +241,7 @@ function PlotGraph() {
             </button>
           </div>
 
-          <div className="mt-8">
+          <div className="my-8">
             <RegressionResults result={regression} />
           </div>
 

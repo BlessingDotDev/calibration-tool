@@ -78,7 +78,7 @@ function CalibrationChart({
 
       <div 
         id="calibration-chart"
-        className="h-100 w-full">
+        className="h-100 w-full bg-white/90 rounded-lg border border-white/10 ">
         <ResponsiveContainer width="100%" height="100%">
           <ScatterChart
             margin={{
@@ -90,23 +90,23 @@ function CalibrationChart({
           >
             <CartesianGrid
               strokeDasharray="3 3"
-              stroke="rgba(255,255,255,0.08)"
+              stroke="rgba(0,0,0,0.2)"
             />
 
             <XAxis
               type="number"
               dataKey="concentration"
               name="Concentration"
-              tick={{ fill: "rgba(255,255,255,0.5)" }}
+              tick={{ fill: "rgba(0,0,0)" }}
               axisLine={{
-                stroke: "rgba(255,255,255,0.15)",
+                stroke: "rgba(0,0,0)",
               }}
               tickLine={false}
               label={{
                 value: "Concentration",
                 position: "insideBottom",
                 offset: -10,
-                fill: "rgba(255,255,255,0.5)",
+                fill: "rgba(0,0,0)",
               }}
             />
 
@@ -114,16 +114,16 @@ function CalibrationChart({
               type="number"
               dataKey="absorbance"
               name="Absorbance"
-              tick={{ fill: "rgba(255,255,255,0.5)" }}
+              tick={{ fill: "rgba(0,0,0)" }}
               axisLine={{
-                stroke: "rgba(255,255,255,0.15)",
+                stroke: "rgba(0,0,0)",
               }}
               tickLine={false}
               label={{
                 value: "Absorbance",
                 angle: -90,
                 position: "insideLeft",
-                fill: "rgba(255,255,255,0.5)",
+                fill: "rgba(0,0,0)",
               }}
             />
 
@@ -132,27 +132,27 @@ function CalibrationChart({
                 strokeDasharray: "3 3",
               }}
               contentStyle={{
-                backgroundColor: "#111",
-                border: "1px solid rgba(255,255,255,0.1)",
+                backgroundColor: "rgba(0,0,0,0.8)",
+                border: "1px solid rgba(0,0,0,0.8)",
                 borderRadius: "12px",
               }}
               labelStyle={{
-                color: "rgba(255,255,255,0.6)",
+                color: "rgba(0,0,0,0.6)",
               }}
             />
 
             <Scatter
               name="Calibration Standards"
               data={validData}
-              fill="#ffffff"
+              fill="#000000"
             />
 
             <Line
               type="linear"
               data={regressionLine}
               dataKey="absorbance"
-              stroke="#ffffff"
-              strokeWidth={2}
+              stroke="#000000"
+              strokeWidth={0.5}
               dot={false}
               name="Regression"
             />
