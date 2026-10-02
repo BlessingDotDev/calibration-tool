@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import HeroSection from "../components/section/HeroSection";
 import plotGraphImage from "../assets/project.jpg";
 
@@ -19,7 +19,11 @@ import PageTransition from "../components/animation/PageTransition";
 
 
 function PlotGraph() {
-  const [calibrationData, setCalibrationData] = useState<CalibrationPoint[]>([]);
+  const [calibrationData, setCalibrationData] = useState<CalibrationPoint[]>(
+    () => {
+    return JSON.parse(localStorage.getItem("calibrationData") || "[]");
+  });
+
   const [unknownSamples, setUnknownSamples] = useState<UnknownSampleType[]>([
     {
       id: 1,
@@ -28,9 +32,15 @@ function PlotGraph() {
       dilutionFactor: 1,
     },
   ]);
+
   const [csvError, setCsvError] = useState<string | null>( null,);
 
-  
+  useEffect(() => {
+    localStorage.setItem(
+      "calibrationData", JSON.stringify(calibrationData)
+    );
+    
+  }, [calibrationData]);
 
   const handleChange = (
     id: number,
