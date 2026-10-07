@@ -9,8 +9,8 @@ import {
   YAxis,
 } from "recharts";
 
-import type { CalibrationPoint } from "../../types/calibration";
-import type { RegressionResult } from "../../utils/regression";
+import type { CalibrationPoint } from "../../lib/types/calibration";
+import type { RegressionResult } from "../../lib/utils/regression";
 
 type CalibrationChartProps = {
   data: CalibrationPoint[];
@@ -62,7 +62,6 @@ function CalibrationChart({
         regression.slope * maxX + regression.intercept,
     },
   ];
-
   return (
     <div className="rounded-2xl border border-white/10 bg-surface p-6">
       <div className="mb-6">

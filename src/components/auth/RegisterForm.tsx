@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import Button from "../ui/Button"
-import {  registerSchema, type RegisterFormData} from "../../schemas/auth.schema"
+import {  registerSchema, type RegisterFormData} from "../../lib/schemas/auth.schema"
 
 function RegisterForm() {
   const {

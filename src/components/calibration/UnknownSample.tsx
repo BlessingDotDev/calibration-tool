@@ -1,8 +1,8 @@
 import type {
   CalibrationPoint,
   UnknownSample as UnknownSampleType,
-} from "../../types/calibration";
-import type { RegressionResult } from "../../utils/regression";
+} from "../../lib/types/calibration";
+import type { RegressionResult } from "../../lib/utils/regression";
 
 type UnknownSampleProps = {
   data: CalibrationPoint[];

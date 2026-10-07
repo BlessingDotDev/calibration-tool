@@ -1,4 +1,4 @@
-import type { RegressionResult } from "../../utils/regression";
+import type { RegressionResult } from "../../lib/utils/regression";
 
 type RegressionResultsProps = {
   result: RegressionResult | null;
@@ -7,6 +7,7 @@ type RegressionResultsProps = {
 function RegressionResults({
   result,
 }: RegressionResultsProps) {
+
   if (!result) {
     return (
       <div className="rounded-2xl border border-white/10 bg-surface p-6">

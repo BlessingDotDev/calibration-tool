@@ -2,9 +2,9 @@ import { useState, useEffect } from "react";
 import HeroSection from "../components/section/HeroSection";
 import plotGraphImage from "../assets/project.jpg";
 
-import type { CalibrationPoint, UnknownSample as UnknownSampleType, } from "../types/calibration";
+import type { CalibrationPoint, UnknownSample as UnknownSampleType, } from "../lib/types/calibration";
 import CalibrationTable from "../components/calibration/CalibrationTable";
-import { calculateRegression } from "../utils/regression";
+import { calculateRegression } from "../lib/utils/regression";
 import RegressionResults from "../components/calibration/CalibrationResults";
 import CalibrationChart from "../components/calibration/CalibrationChart";
 import UnknownSample from "../components/calibration/UnknownSample";
@@ -12,9 +12,9 @@ import UnknownSample from "../components/calibration/UnknownSample";
 import {
   validateCalibrationData,
   validateUnknownSamples,
-} from "../utils/validation";
-import { exportCalibrationCSV, importCalibrationCSV } from "../utils/csv";
-import { generatePDFReport } from "../utils/report";
+} from "../lib/utils/validation";
+import { exportCalibrationCSV, importCalibrationCSV } from "../lib/utils/csv";
+import { generatePDFReport } from "../lib/utils/report";
 import PageTransition from "../components/animation/PageTransition";
 
 

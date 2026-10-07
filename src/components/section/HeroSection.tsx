@@ -18,6 +18,7 @@ function HeroSection({
   children,
   className,
 }: HeroSectionProps) {
+  console.log("hero section renderd")
   return (
     <section className={clsx(
       `relative bg-surface 

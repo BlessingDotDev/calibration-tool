@@ -1,5 +1,5 @@
 
-import type { CalibrationPoint } from "../../types/calibration";
+import type { CalibrationPoint } from "../../lib/types/calibration";
 
 type CalibrationTableProps = {
   data: CalibrationPoint[];
