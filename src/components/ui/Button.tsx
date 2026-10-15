@@ -12,7 +12,7 @@ type ButtonVariant =
 
 const buttonStyles: Record<ButtonVariant, string> = {
   primary:
-    "inline-flex items-center justify-center rounded-xl bg-amber-600 px-6 py-3 font-semibold text-white shadow-lg shadow-amber-500/20 transition-all duration-200 hover:-translate-y-0.5 hover:bg-amber-600 hover:shadow-xl hover:shadow-amber-500/30 focus:outline-none focus:ring-2 focus:ring-primary/50",
+    "inline-flex items-center justify-center rounded-xl bg-secondary px-6 py-3 font-semibold text-black shadow-lg shadow-seconday/20 transition-all duration-200 hover:-translate-y-0.5 hover:bg-secondary/80 focus:outline-none focus:ring-2 focus:ring-primary/50",
 
   secondary:
     "inline-flex items-center justify-center rounded-xl bg-surface px-6 py-3 font-semibold text-text border border-border transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/50 hover:text-primary hover:shadow-md focus:outline-none focus:ring-2 focus:ring-primary/30",
