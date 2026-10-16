@@ -255,7 +255,7 @@ function PlotGraph() {
             </button>
           </div>
 
-          <div className="my-8">
+          <div className="my-12">
             <RegressionResults result={regression} />
           </div>
 
@@ -264,7 +264,7 @@ function PlotGraph() {
             regression={regression}
           />
 
-          <div className="mt-8">
+          <div className="mt-12">
             <UnknownSample
               data={calibrationData}
               samples={unknownSamples}
@@ -275,7 +275,7 @@ function PlotGraph() {
             />
           </div>
 
-          <div className="text-end mt-8 space-y-4">
+          <div className="text-end mt-12 space-y-4">
             {isLandscape ? null : <LandscapeWarning />}
 
             <button
