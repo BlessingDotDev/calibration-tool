@@ -16,6 +16,8 @@ import {
 import { exportCalibrationCSV, importCalibrationCSV } from "../lib/utils/csv";
 import { generatePDFReport } from "../lib/utils/report";
 import PageTransition from "../components/animation/PageTransition";
+import LandscapeWarning from "../components/LandscapeWarning";
+import { useIsLandscape } from "../hooks/useIsLandscape";
 
 
 function PlotGraph() {
@@ -152,6 +154,8 @@ function PlotGraph() {
   const unknownValidation =
   validateUnknownSamples(unknownSamples);
 
+  const isLandscape = useIsLandscape();
+
   return (
     <>
      <title>Plot Calibration Curve</title>
@@ -271,7 +275,9 @@ function PlotGraph() {
             />
           </div>
 
-          <div className="text-end mt-8">
+          <div className="text-end mt-8 space-y-4">
+            {isLandscape && <LandscapeWarning />}
+
             <button
               type="button"
               onClick={async () =>

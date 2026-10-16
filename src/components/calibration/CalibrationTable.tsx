@@ -47,7 +47,7 @@ function CalibrationTable({
             {data.map((point, index) => (
               <tr
                 key={point.id}
-                className="border-t border-white/10"
+                className="border-t border-white/10 "
               >
                 <td className="px-5 py-4 text-sm text-white/40">
                   {index + 1}
