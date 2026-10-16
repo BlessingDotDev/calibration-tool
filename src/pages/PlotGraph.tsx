@@ -276,7 +276,7 @@ function PlotGraph() {
           </div>
 
           <div className="text-end mt-8 space-y-4">
-            {isLandscape && <LandscapeWarning />}
+            {isLandscape ? null : <LandscapeWarning />}
 
             <button
               type="button"
